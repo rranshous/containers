@@ -12,7 +12,7 @@ RUN rm download
 RUN mv ums-3.6.1 /opt/
 RUN ln -s /opt/ums-3.6.1/UMS.sh /bin/UMS
 
-ADD UMS.conf /opt/ums/UMS.conf
+ADD ./UMS.conf /opt/ums/UMS.conf
 
 ENV UMS_PROFILE /opt/ums/UMS.conf
 EXPOSE 5001

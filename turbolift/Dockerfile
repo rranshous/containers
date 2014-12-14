@@ -7,4 +7,4 @@ RUN apt-get install -y git
 RUN git clone git://github.com/cloudnull/turbolift.git
 WORKDIR /turbolift
 RUN python setup.py install
-ENTRYPOINT /usr/local/bin/turbolift
+ENV TURBO_CONCURRENCY 100

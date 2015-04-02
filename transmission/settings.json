@@ -15,5 +15,10 @@
     "rpc-whitelist": "*",
     "rpc-whitelist-enabled": 0,
     "upload-limit": 100, 
-    "upload-limit-enabled": 0
+    "upload-limit-enabled": 0,
+    "proxy": "roxy.local",
+    "proxy_auth_enabled": false,
+    "proxy_enabled": true,
+    "proxy_port": 1080,
+    "proxy_type": 2
 }

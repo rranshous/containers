@@ -1,3 +1,3 @@
 docker kill transmission
 docker rm transmission
-docker run -p 9091:9091 -v /gut/media/unsorted:/downloads --name transmission -d slag.local:4567/transmission
+docker run -p 9091:9091 -v /downloads:/downloads --name transmission -d transmission

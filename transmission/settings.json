@@ -14,7 +14,7 @@
     "rpc-username": "transmission", 
     "rpc-whitelist": "*",
     "rpc-whitelist-enabled": 0,
-    "upload-limit": 0.001, 
+    "upload-limit": 10,
     "upload-limit-enabled": 1,
     "proxy": "roxy.local",
     "proxy_auth_enabled": false,

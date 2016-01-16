@@ -1,0 +1,25 @@
+minimized = false
+audio_embed_dts_in_pcm = true
+maximum_bitrate = 0
+mpeg2_main_settings = Automatic (Wireless)
+x264_constant_rate_factor = Automatic (Wireless)
+hide_advanced_options = false
+run_wizard = false
+folders = /data/media
+folders_monitored =
+network_interface = eth0
+audio_thumbnails_method = 1
+thumbnail_seek_position = 60
+use_cache = false
+hide_recently_played_folder = true
+disable_subtitles = false
+audio_use_pcm = true
+hide_enginenames = true
+hide_extensions = false
+mencoder_mux_compatible = false
+http_engine_v2 = true
+engines = mencoder,ffmpegvideo,ffmpegaudio,mencoderwebvideo,ffmpegwebvideo,vlcwebvideo,vlcvideo,vlcaudio,rawthumbs
+
+#mencoder_scaler = true
+#mencoder_scalex = 720
+#mencoder_scaley = 480

@@ -1,0 +1,43 @@
+FROM ioft/armhf-ubuntu:14.04
+
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mplayer
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mencoder
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mediainfo
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-7-jre
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y iputils-ping git
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y make
+
+
+# install FFMPEG for arm
+RUN bash -c "cd /usr/src && \
+             git clone git://git.videolan.org/x264 && \
+             cd x264 && \
+             ./configure --host=arm-unknown-linux-gnueabi --enable-static --disable-opencl && \
+             make -j4 && \
+             sudo make install"
+
+RUN bash -c "cd /usr/src && \
+             git clone git://source.ffmpeg.org/ffmpeg.git && \
+             cd ffmpeg && \
+             sudo ./configure --arch=armel --target-os=linux --enable-gpl --enable-libx264 --enable-nonfree && \
+             make && \
+             sudo make install"
+
+WORKDIR /tmp
+RUN apt-get install -y wget
+RUN wget http://sourceforge.net/projects/unimediaserver/files/Official%20Releases/Linux/UMS-3.6.1.tgz/download
+RUN tar -xvzf download
+RUN rm download
+
+RUN mv ums-3.6.1 /opt/
+RUN ln -s /opt/ums-3.6.1/UMS.sh /bin/UMS
+RUN bash -c "rm /opt/ums-3.6.1/linux/ffmpeg && ln -s /usr/local/bin/ffmpeg /opt/ums-3.6.1/linux/ffmpeg"
+
+ADD ./UMS.conf-rbi /opt/ums/UMS.conf
+
+ENV UMS_PROFILE /opt/ums/UMS.conf
+EXPOSE 5001
+
+CMD /bin/UMS

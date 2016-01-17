@@ -25,7 +25,6 @@ RUN cd /tmp && cd minidlna* && make install
 
 ADD minidlna.conf /etc/minidlna.conf
 
-
 EXPOSE 8200
 EXPOSE 1900
 VOLUME /data

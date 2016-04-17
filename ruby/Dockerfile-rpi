@@ -1,0 +1,1 @@
+FROM hypriot/rpi-ruby:2.2.2

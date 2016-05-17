@@ -1,4 +1,4 @@
-FROM ioft/armhf-ubuntu:14.04
+FROM ioft/armhf-ubuntu:14.04.3
 
 MAINTAINER Thomas Kerpe <toke@toke.de>
 

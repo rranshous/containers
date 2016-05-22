@@ -1,3 +1,5 @@
+docker kill samba
+docker rm samba
 docker run -d -it \
   --name samba \
   -h samba \
@@ -6,6 +8,7 @@ docker run -d -it \
   -p 445:445 \
   -p 445:445/udp \
   -v /public:/var/www/html \
+  -v /private:/home/open/private \
   -e SMB_USER='open' \
   -e SMB_PASS='sesime' \
   appcontainers/samba

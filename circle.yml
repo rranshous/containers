@@ -9,7 +9,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p rranshous/rsyncd
+    - docker run -d rranshous/rsyncd
 
 deployment:
   hub:

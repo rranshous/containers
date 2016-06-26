@@ -1,0 +1,7 @@
+# target use case: a server hosting files to sync to nodes
+
+-- run daemon on server
+docker run -d -v /server/store:/data -p 873:873 rsync
+
+-- on node
+docker run -d -v /node/store:/data -e RSYNC_PASSWORD=anonymous rsync -avzh anonymous@<server-ip>::data/ ./

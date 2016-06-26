@@ -12,5 +12,7 @@ RUN chmod 0400 /etc/rsyncd.secrets
 ENTRYPOINT ["/usr/bin/rsync"]
 CMD ["--daemon", "-v", "--address", "0.0.0.0", "--no-detach"]
 
+WORKDIR /data
+
 VOLUME /data
 EXPOSE 873

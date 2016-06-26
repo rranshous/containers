@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t rranshous/rsyncd .
+    - docker build -f rsyncd/Dockerfile -t rranshous/rsyncd .
 
 test:
   override:

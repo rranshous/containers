@@ -6,10 +6,48 @@ dependencies:
   override:
     - docker info
     - cd rsyncd && docker build -t rranshous/rsyncd .
+    - cd beanstalkd && docker build -t rranshous/beanstalkd .
+    - cd consul && docker build -t rranshous/consul .
+    - cd eventstore && docker build -t rranshous/eventstore .
+    - cd ffmpeg && docker build -t rranshous/ffmpeg .
+    - cd http_listing && docker build -t rranshous/http_listing .
+    - cd minidlna && docker build -t rranshous/minidlna .
+    - cd mosquitto && docker build -t rranshous/mosquitto .
+    - cd munin && docker build -t rranshous/munin .
+    - cd openvpn && docker build -t rranshous/openvpn .
+    - cd psocksd && docker build -t rranshous/psocksd .
+    - cd rdiff-backup && docker build -t rranshous/rdiff .
+    - cd registry && docker build -t rranshous/registry .
+    - cd ruby && docker build -t rranshous/ruby .
+    - cd samba && docker build -t rranshous/samba .
+    - cd swift-onlyone && docker build -t rranshous/swift-onlyone .
+    - cd transmission && docker build -t rranshous/transmission .
+    - cd turbolift && docker build -t rranshous/turbolift .
+    - cd ums && docker build -t rranshous/ums .
+    - cd zfs && docker build -t rranshous/zfs .
 
 test:
   override:
     - docker run -d rranshous/rsyncd
+    - docker run -d rranshous/beanstalkd
+    - docker run -d rranshous/consul
+    - docker run -d rranshous/eventstore
+    - docker run -d rranshous/ffmpeg
+    - docker run -d rranshous/http_listing
+    - docker run -d rranshous/minidlna
+    - docker run -d rranshous/mosquitto
+    - docker run -d rranshous/munin
+    - docker run -d rranshous/openvpn
+    - docker run -d rranshous/psocksd
+    - docker run -d rranshous/rdiff-backup
+    - docker run -d rranshous/registry
+    - docker run -d rranshous/ruby
+    - docker run -d rranshous/samba
+    - docker run -d rranshous/swift-onlyone
+    - docker run -d rranshous/transmission
+    - docker run -d rranshous/turbolift
+    - docker run -d rranshous/ums
+    - docker run -d rranshous/zfs
 
 deployment:
   hub:
@@ -17,3 +55,22 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push rranshous/rsyncd
+      - docker push rranshous/beanstalkd
+      - docker push rranshous/consul
+      - docker push rranshous/eventstore
+      - docker push rranshous/ffmpeg
+      - docker push rranshous/http_listing
+      - docker push rranshous/minidlna
+      - docker push rranshous/mosquitto
+      - docker push rranshous/munin
+      - docker push rranshous/openvpn
+      - docker push rranshous/psocksd
+      - docker push rranshous/rdiff-backup
+      - docker push rranshous/registry
+      - docker push rranshous/ruby
+      - docker push rranshous/samba
+      - docker push rranshous/swift-onlyone
+      - docker push rranshous/transmission
+      - docker push rranshous/turbolift
+      - docker push rranshous/ums
+      - docker push rranshous/zfs

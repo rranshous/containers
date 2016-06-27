@@ -9,7 +9,6 @@ dependencies:
     - cd beanstalkd && docker build -t rranshous/beanstalkd .
     - cd ffmpeg && docker build -t rranshous/ffmpeg .
     - cd http_listing && docker build -t rranshous/http_listing .
-    - cd minidlna && docker build -t rranshous/minidlna .
     - cd mosquitto && docker build -t rranshous/mosquitto .
     - cd openvpn && docker build -t rranshous/openvpn .
     - cd rdiff-backup && docker build -t rranshous/rdiff .
@@ -24,7 +23,6 @@ test:
     - docker run -d rranshous/beanstalkd
     - docker run -d rranshous/ffmpeg
     - docker run -d rranshous/http_listing
-    - docker run -d rranshous/minidlna
     - docker run -d rranshous/mosquitto
     - docker run -d rranshous/openvpn
     - docker run -d rranshous/rdiff-backup
@@ -42,7 +40,6 @@ deployment:
       - docker push rranshous/beanstalkd
       - docker push rranshous/ffmpeg
       - docker push rranshous/http_listing
-      - docker push rranshous/minidlna
       - docker push rranshous/mosquitto
       - docker push rranshous/openvpn
       - docker push rranshous/rdiff-backup

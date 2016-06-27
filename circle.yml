@@ -7,7 +7,6 @@ dependencies:
     - docker info
     - cd rsyncd && docker build -t rranshous/rsyncd .
     - cd beanstalkd && docker build -t rranshous/beanstalkd .
-    - cd consul && docker build -t rranshous/consul .
     - cd eventstore && docker build -t rranshous/eventstore .
     - cd ffmpeg && docker build -t rranshous/ffmpeg .
     - cd http_listing && docker build -t rranshous/http_listing .
@@ -30,7 +29,6 @@ test:
   override:
     - docker run -d rranshous/rsyncd
     - docker run -d rranshous/beanstalkd
-    - docker run -d rranshous/consul
     - docker run -d rranshous/eventstore
     - docker run -d rranshous/ffmpeg
     - docker run -d rranshous/http_listing
@@ -56,7 +54,6 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push rranshous/rsyncd
       - docker push rranshous/beanstalkd
-      - docker push rranshous/consul
       - docker push rranshous/eventstore
       - docker push rranshous/ffmpeg
       - docker push rranshous/http_listing

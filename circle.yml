@@ -5,39 +5,42 @@ machine:
 dependencies:
   override:
     - docker info
-    - cd rsyncd && docker build -t rranshous/rsyncd .
-    - cd beanstalkd && docker build -t rranshous/beanstalkd .
-    - cd ffmpeg && docker build -t rranshous/ffmpeg .
-    - cd http_listing && docker build -t rranshous/http_listing .
-    - cd mosquitto && docker build -t rranshous/mosquitto .
-    - cd openvpn && docker build -t rranshous/openvpn .
-    - cd rdiff-backup && docker build -t rranshous/rdiff-backup .
-    - cd transmission && docker build -t rranshous/transmission .
-    - cd turbolift && docker build -t rranshous/turbolift .
+    - ./build rsyncd
+    - ./build beanstalkd
+    - ./build ffmpeg
+    - ./build http_listing
+    - ./build mosquitto
+    - ./build openvpn
+    - ./build rdiff-backup
+    - ./build transmission
+    - ./build turbolift
+    - ./build zfs
 
 test:
   override:
-    - docker run -d rranshous/rsyncd
-    - docker run -d rranshous/beanstalkd
-    - docker run -d rranshous/ffmpeg
-    - docker run -d rranshous/http_listing
-    - docker run -d rranshous/mosquitto
-    - docker run -d rranshous/openvpn
-    - docker run -d rranshous/rdiff-backup
-    - docker run -d rranshous/transmission
-    - docker run -d rranshous/turbolift
+    - ./test rsyncd
+    - ./test beanstalkd
+    - ./test ffmpeg
+    - ./test http_listing
+    - ./test mosquitto
+    - ./test openvpn
+    - ./test rdiff-backup
+    - ./test transmission
+    - ./test turbolift
+    - ./test zfs
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1             && docker push rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rsyncd:latest
-      - docker tag rranshous/beanstalkd rranshous/beanstalkd:$CIRCLE_SHA1     && docker push rranshous/beanstalkd:$CIRCLE_SHA1   && docker push rranshous/beanstalkd:latest
-      - docker tag rranshous/ffmpeg rranshous/ffmpeg:$CIRCLE_SHA1             && docker push rranshous/ffmpeg:$CIRCLE_SHA1       && docker push rranshous/ffmpeg:latest
-      - docker tag rranshous/http_listing rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:latest
-      - docker tag rranshous/mosquitto rranshous/mosquitto:$CIRCLE_SHA1       && docker push rranshous/mosquitto:$CIRCLE_SHA1    && docker push rranshous/mosquitto:latest
-      - docker tag rranshous/openvpn rranshous/openvpn:$CIRCLE_SHA1           && docker push rranshous/openvpn:$CIRCLE_SHA1      && docker push rranshous/openvpn:latest
-      - docker tag rranshous/rdiff-backup rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:latest
-      - docker tag rranshous/transmission rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:latest
-      - docker tag rranshous/turbolift rranshous/turbolift:$CIRCLE_SHA1       && docker push rranshous/turbolift:$CIRCLE_SHA1    && docker push rranshous/turbolift:latest
+      - ./push rsyncd
+      - ./push beanstalkd
+      - ./push ffmpeg
+      - ./push http_listing
+      - ./push mosquitto
+      - ./push openvpn
+      - ./push rdiff-backup
+      - ./push transmission
+      - ./push turbolift
+      - ./push zfs

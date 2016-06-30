@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+app=$1
+docker tag rranshous/$app rranshous/$app:$CIRCLE_SHA1 && docker push rranshous/$app:$CIRCLE_SHA1 && docker push rranshous/$app:latest

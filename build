@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+app=$1
+cd $app && docker build -t rranshous/$app .

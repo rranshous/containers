@@ -14,7 +14,6 @@ dependencies:
     - cd rdiff-backup && docker build -t rranshous/rdiff-backup .
     - cd transmission && docker build -t rranshous/transmission .
     - cd turbolift && docker build -t rranshous/turbolift .
-    - cd zfs && docker build -t rranshous/zfs .
 
 test:
   override:
@@ -27,7 +26,6 @@ test:
     - docker run -d rranshous/rdiff-backup
     - docker run -d rranshous/transmission
     - docker run -d rranshous/turbolift
-    - docker run -d rranshous/zfs
 
 deployment:
   hub:
@@ -43,4 +41,3 @@ deployment:
       - docker tag rranshous/rdiff-backup rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:latest
       - docker tag rranshous/transmission rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:latest
       - docker tag rranshous/turbolift rranshous/turbolift:$CIRCLE_SHA1       && docker push rranshous/turbolift:$CIRCLE_SHA1    && docker push rranshous/turbolift:latest
-      - docker tag rranshous/zfs rranshous/zfs:$CIRCLE_SHA1                   && docker push rranshous/zfs:$CIRCLE_SHA1          && docker push rranshous/zfs:latest

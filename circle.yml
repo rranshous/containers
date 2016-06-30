@@ -5,42 +5,42 @@ machine:
 dependencies:
   override:
     - docker info
-    - cd rsyncd && docker build -t rranshous/rsyncd .
-    - cd beanstalkd && docker build -t rranshous/beanstalkd .
-    - cd ffmpeg && docker build -t rranshous/ffmpeg .
-    - cd http_listing && docker build -t rranshous/http_listing .
-    - cd mosquitto && docker build -t rranshous/mosquitto .
-    - cd openvpn && docker build -t rranshous/openvpn .
-    - cd rdiff-backup && docker build -t rranshous/rdiff-backup .
-    - cd transmission && docker build -t rranshous/transmission .
-    - cd turbolift && docker build -t rranshous/turbolift .
-    - cd zfs && docker build -t rranshous/zfs .
+    - if docker search rranshous/rsyncd:$CIRCLE_SHA1 | grep -q rsyncd; then echo "already exists"; else cd rsyncd                   && docker build -t rranshous/rsyncd .; fi
+    - if docker search rranshous/beanstalkd:$CIRCLE_SHA1 | grep -q beanstalkd; then echo "already exists"; else cd beanstalkd       && docker build -t rranshous/beanstalkd .
+    - if docker search rranshous/ffmpeg:$CIRCLE_SHA1 | grep -q ffmpeg; then echo "already exists"; else cd ffmpeg                   && docker build -t rranshous/ffmpeg .
+    - if docker search rranshous/http_listing:$CIRCLE_SHA1 | grep -q http_listing; then echo "already exists"; else cd http_listing && docker build -t rranshous/http_listing .
+    - if docker search rranshous/mosquitto:$CIRCLE_SHA1 | grep -q mosquitto; then echo "already exists"; else cd mosquitto          && docker build -t rranshous/mosquitto .
+    - if docker search rranshous/openvpn:$CIRCLE_SHA1 | grep -q openvpn; then echo "already exists"; else cd openvpn                && docker build -t rranshous/openvpn .
+    - if docker search rranshous/rdiff-backup:$CIRCLE_SHA1 | grep -q rdiff-backup; then echo "already exists"; else cd rdiff-backup && docker build -t rranshous/rdiff-backup .
+    - if docker search rranshous/transmission:$CIRCLE_SHA1 | grep -q transmission; then echo "already exists"; else cd transmission && docker build -t rranshous/transmission .
+    - if docker search rranshous/turbolift:$CIRCLE_SHA1 | grep -q turbolift; then echo "already exists"; else cd turbolift          && docker build -t rranshous/turbolift .
+    - if docker search rranshous/zfs:$CIRCLE_SHA1 | grep -q zfs; then echo "already exists"; else cd zfs                            && docker build -t rranshous/zfs .
 
 test:
   override:
-    - docker run -d rranshous/rsyncd
-    - docker run -d rranshous/beanstalkd
-    - docker run -d rranshous/ffmpeg
-    - docker run -d rranshous/http_listing
-    - docker run -d rranshous/mosquitto
-    - docker run -d rranshous/openvpn
-    - docker run -d rranshous/rdiff-backup
-    - docker run -d rranshous/transmission
-    - docker run -d rranshous/turbolift
-    - docker run -d rranshous/zfs
+    - if docker search rranshous/rsyncd:$CIRCLE_SHA1 | grep -q rsyncd; then echo "already exists"; else cd rsyncd                   && docker run -d rranshous/rsyncd
+    - if docker search rranshous/beanstalkd:$CIRCLE_SHA1 | grep -q beanstalkd; then echo "already exists"; else cd beanstalkd       && docker run -d rranshous/beanstalkd
+    - if docker search rranshous/ffmpeg:$CIRCLE_SHA1 | grep -q ffmpeg; then echo "already exists"; else cd ffmpeg                   && docker run -d rranshous/ffmpeg
+    - if docker search rranshous/http_listing:$CIRCLE_SHA1 | grep -q http_listing; then echo "already exists"; else cd http_listing && docker run -d rranshous/http_listing
+    - if docker search rranshous/mosquitto:$CIRCLE_SHA1 | grep -q mosquitto; then echo "already exists"; else cd mosquitto          && docker run -d rranshous/mosquitto
+    - if docker search rranshous/openvpn:$CIRCLE_SHA1 | grep -q openvpn; then echo "already exists"; else cd openvpn                && docker run -d rranshous/openvpn
+    - if docker search rranshous/rdiff-backup:$CIRCLE_SHA1 | grep -q rdiff-backup; then echo "already exists"; else cd rdiff-backup && docker run -d rranshous/rdiff-backup
+    - if docker search rranshous/transmission:$CIRCLE_SHA1 | grep -q transmission; then echo "already exists"; else cd transmission && docker run -d rranshous/transmission
+    - if docker search rranshous/turbolift:$CIRCLE_SHA1 | grep -q turbolift; then echo "already exists"; else cd turbolift          && docker run -d rranshous/turbolift
+    - if docker search rranshous/zfs:$CIRCLE_SHA1 | grep -q zfs; then echo "already exists"; else cd zfs                            && docker run -d rranshous/zfs
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1             && docker push rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rsyncd:latest
-      - docker tag rranshous/beanstalkd rranshous/beanstalkd:$CIRCLE_SHA1     && docker push rranshous/beanstalkd:$CIRCLE_SHA1   && docker push rranshous/beanstalkd:latest
-      - docker tag rranshous/ffmpeg rranshous/ffmpeg:$CIRCLE_SHA1             && docker push rranshous/ffmpeg:$CIRCLE_SHA1       && docker push rranshous/ffmpeg:latest
-      - docker tag rranshous/http_listing rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:latest
-      - docker tag rranshous/mosquitto rranshous/mosquitto:$CIRCLE_SHA1       && docker push rranshous/mosquitto:$CIRCLE_SHA1    && docker push rranshous/mosquitto:latest
-      - docker tag rranshous/openvpn rranshous/rsyncd:$CIRCLE_SHA1            && docker push rranshous/openvpn:$CIRCLE_SHA1      && docker push rranshous/openvpn:latest
-      - docker tag rranshous/rdiff-backup rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:latest
-      - docker tag rranshous/transmission rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:latest
-      - docker tag rranshous/turbolift rranshous/rsyncd:$CIRCLE_SHA1          && docker push rranshous/turbolift:$CIRCLE_SHA1    && docker push rranshous/turbolift:latest
-      - docker tag rranshous/zfs rranshous/rsyncd:$CIRCLE_SHA1                && docker push rranshous/zfs:$CIRCLE_SHA1          && docker push rranshous/zfs:latest
+      - if docker search rranshous/rsyncd:$CIRCLE_SHA1 | grep -q rsyncd; then echo "already exists"; else cd rsyncd                   && docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1             && docker push rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rsyncd:latest
+      - if docker search rranshous/beanstalkd:$CIRCLE_SHA1 | grep -q beanstalkd; then echo "already exists"; else cd beanstalkd       && docker tag rranshous/beanstalkd rranshous/beanstalkd:$CIRCLE_SHA1     && docker push rranshous/beanstalkd:$CIRCLE_SHA1   && docker push rranshous/beanstalkd:latest
+      - if docker search rranshous/ffmpeg:$CIRCLE_SHA1 | grep -q ffmpeg; then echo "already exists"; else cd ffmpeg                   && docker tag rranshous/ffmpeg rranshous/ffmpeg:$CIRCLE_SHA1             && docker push rranshous/ffmpeg:$CIRCLE_SHA1       && docker push rranshous/ffmpeg:latest
+      - if docker search rranshous/http_listing:$CIRCLE_SHA1 | grep -q http_listing; then echo "already exists"; else cd http_listing && docker tag rranshous/http_listing rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:latest
+      - if docker search rranshous/mosquitto:$CIRCLE_SHA1 | grep -q mosquitto; then echo "already exists"; else cd mosquitto          && docker tag rranshous/mosquitto rranshous/mosquitto:$CIRCLE_SHA1       && docker push rranshous/mosquitto:$CIRCLE_SHA1    && docker push rranshous/mosquitto:latest
+      - if docker search rranshous/openvpn:$CIRCLE_SHA1 | grep -q openvpn; then echo "already exists"; else cd openvpn                && docker tag rranshous/openvpn rranshous/rsyncd:$CIRCLE_SHA1            && docker push rranshous/openvpn:$CIRCLE_SHA1      && docker push rranshous/openvpn:latest
+      - if docker search rranshous/rdiff-backup:$CIRCLE_SHA1 | grep -q rdiff-backup; then echo "already exists"; else cd rdiff-backup && docker tag rranshous/rdiff-backup rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:latest
+      - if docker search rranshous/transmission:$CIRCLE_SHA1 | grep -q transmission; then echo "already exists"; else cd transmission && docker tag rranshous/transmission rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:latest
+      - if docker search rranshous/turbolift:$CIRCLE_SHA1 | grep -q turbolift; then echo "already exists"; else cd turbolift          && docker tag rranshous/turbolift rranshous/rsyncd:$CIRCLE_SHA1          && docker push rranshous/turbolift:$CIRCLE_SHA1    && docker push rranshous/turbolift:latest
+      - if docker search rranshous/zfs:$CIRCLE_SHA1 | grep -q zfs; then echo "already exists"; else cd zfs                            && docker tag rranshous/zfs rranshous/rsyncd:$CIRCLE_SHA1                && docker push rranshous/zfs:$CIRCLE_SHA1          && docker push rranshous/zfs:latest

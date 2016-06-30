@@ -34,13 +34,13 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rsyncd:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/beanstalkd:$CIRCLE_SHA1   && docker push rranshous/beanstalkd:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/ffmpeg:$CIRCLE_SHA1       && docker push rranshous/ffmpeg:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/mosquitto:$CIRCLE_SHA1    && docker push rranshous/mosquitto:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/openvpn:$CIRCLE_SHA1      && docker push rranshous/openvpn:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/turbolift:$CIRCLE_SHA1    && docker push rranshous/turbolift:latest
-      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1 && docker push rranshous/zfs:$CIRCLE_SHA1          && docker push rranshous/zfs:latest
+      - docker tag rranshous/rsyncd rranshous/rsyncd:$CIRCLE_SHA1             && docker push rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rsyncd:latest
+      - docker tag rranshous/beanstalkd rranshous/beanstalkd:$CIRCLE_SHA1     && docker push rranshous/beanstalkd:$CIRCLE_SHA1   && docker push rranshous/beanstalkd:latest
+      - docker tag rranshous/ffmpeg rranshous/ffmpeg:$CIRCLE_SHA1             && docker push rranshous/ffmpeg:$CIRCLE_SHA1       && docker push rranshous/ffmpeg:latest
+      - docker tag rranshous/http_listing rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:$CIRCLE_SHA1 && docker push rranshous/http_listing:latest
+      - docker tag rranshous/mosquitto rranshous/mosquitto:$CIRCLE_SHA1       && docker push rranshous/mosquitto:$CIRCLE_SHA1    && docker push rranshous/mosquitto:latest
+      - docker tag rranshous/openvpn rranshous/rsyncd:$CIRCLE_SHA1            && docker push rranshous/openvpn:$CIRCLE_SHA1      && docker push rranshous/openvpn:latest
+      - docker tag rranshous/rdiff-backup rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/rdiff-backup:$CIRCLE_SHA1 && docker push rranshous/rdiff-backup:latest
+      - docker tag rranshous/transmission rranshous/rsyncd:$CIRCLE_SHA1       && docker push rranshous/transmission:$CIRCLE_SHA1 && docker push rranshous/transmission:latest
+      - docker tag rranshous/turbolift rranshous/rsyncd:$CIRCLE_SHA1          && docker push rranshous/turbolift:$CIRCLE_SHA1    && docker push rranshous/turbolift:latest
+      - docker tag rranshous/zfs rranshous/rsyncd:$CIRCLE_SHA1                && docker push rranshous/zfs:$CIRCLE_SHA1          && docker push rranshous/zfs:latest

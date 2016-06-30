@@ -14,7 +14,7 @@ dependencies:
     - cd rdiff-backup && docker build -t rranshous/rdiff .
     - cd transmission && docker build -t rranshous/transmission .
     - cd turbolift && docker build -t rranshous/turbolift .
-    - cd ums && docker build -t rranshous/ums .
+      #- cd ums && docker build -t rranshous/ums .
     - cd zfs && docker build -t rranshous/zfs .
 
 test:
@@ -28,7 +28,7 @@ test:
     - docker run -d rranshous/rdiff-backup
     - docker run -d rranshous/transmission
     - docker run -d rranshous/turbolift
-    - docker run -d rranshous/ums
+      #- docker run -d rranshous/ums
     - docker run -d rranshous/zfs
 
 deployment:
@@ -45,5 +45,5 @@ deployment:
       - docker push rranshous/rdiff-backup
       - docker push rranshous/transmission
       - docker push rranshous/turbolift
-      - docker push rranshous/ums
+        #- docker push rranshous/ums
       - docker push rranshous/zfs

@@ -5,16 +5,16 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t rranshous/rsyncd .
-    - docker build -t rranshous/beanstalkd .
-    - docker build -t rranshous/ffmpeg .
-    - docker build -t rranshous/http_listing .
-    - docker build -t rranshous/mosquitto .
-    - docker build -t rranshous/openvpn .
-    - docker build -t rranshous/rdiff-backup .
-    - docker build -t rranshous/transmission .
-    - docker build -t rranshous/turbolift .
-    - docker build -t rranshous/zfs .
+    - cd rsyncd && docker build -t rranshous/rsyncd .
+    - cd beanstalkd && docker build -t rranshous/beanstalkd .
+    - cd ffmpeg && docker build -t rranshous/ffmpeg .
+    - cd http_listing && docker build -t rranshous/http_listing .
+    - cd mosquitto && docker build -t rranshous/mosquitto .
+    - cd openvpn && docker build -t rranshous/openvpn .
+    - cd rdiff-backup && docker build -t rranshous/rdiff-backup .
+    - cd transmission && docker build -t rranshous/transmission .
+    - cd turbolift && docker build -t rranshous/turbolift .
+    - cd zfs && docker build -t rranshous/zfs .
 
 test:
   override:

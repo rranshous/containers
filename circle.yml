@@ -8,6 +8,7 @@ dependencies:
     - ./build rsyncd
     - ./build beanstalkd
     - ./build ffmpeg
+    - ./build handbrake
     - ./build http_listing
     - ./build mosquitto
     - ./build openvpn
@@ -22,6 +23,7 @@ test:
     - ./test beanstalkd
     - ./test ffmpeg
     - ./test http_listing
+    - ./test handbrake
     - ./test mosquitto
     - ./test openvpn
     - ./test rdiff-backup
@@ -38,6 +40,7 @@ deployment:
       - ./push beanstalkd
       - ./push ffmpeg
       - ./push http_listing
+      - ./push handbrake
       - ./push mosquitto
       - ./push openvpn
       - ./push rdiff-backup

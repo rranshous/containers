@@ -1,4 +1,4 @@
-FROM ioft/armhf-ubuntu:14.04
+FROM sdhibit/rpi-raspbian:latest
 
 MAINTAINER Robby Ranshous "rranshous@gmail.com"
 

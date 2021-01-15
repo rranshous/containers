@@ -2,4 +2,4 @@
 
 set -x
 app=$1
-docker tag rranshous/$app rranshous/$app:$CIRCLE_SHA1 && docker push rranshous/$app:$CIRCLE_SHA1 && docker push rranshous/$app:latest
+docker tag rranshous/$app rranshous/$app:$GITHUB_SHA && docker push rranshous/$app:$GITHUB_SHA && docker push rranshous/$app:latest

@@ -13,6 +13,7 @@ on:
 jobs:
   build_test_and_push:
     runs-on: ubuntu-latest
+    environment: default
     strategy:
       matrix:
         app: [rsyncd, ffmpeg, http_listing, rdiff-backup, geth]

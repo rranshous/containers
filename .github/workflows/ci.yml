@@ -11,65 +11,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
-  build:
-    # The type of runner that the job will run on
+  build_test_and_push
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a set of commands using the runners shell
-      - name: Build images
-        run: |
-          ./build rsyncd
-          ./build ffmpeg
-          ./build http_listing
-          ./build rdiff-backup
-          ./build geth
-          
-  test:
-    # execute job after build job
-    needs: build
-    runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        app: [rsyncd, ffmpeg, http_listing, rdiff-backup, geth]
     steps:
       - uses: actions/checkout@v2
-
-      - name: Test images
-        run: |
-          ./test rsyncd
-          ./test ffmpeg
-          ./test http_listing
-          ./test rdiff-backup
-          ./test geth
-          
-  push:
-    # execute job after test job
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      
+      - name: Build
+        run: ./build ${{ matrix.app }}
       - name: Docker Login
         uses: docker/login-action@v1.8.0
         with:
-          # Username used to log against the Docker registry
           username: ${{ secrets.DOCKER_USERNAME }}
-          # Password or personal access token used to log against the Docker registry
           password: ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Get docker info
         run: docker info
-
-      - name: Build images
-        run: |
-          ./push rsyncd
-          ./push ffmpeg
-          ./push http_listing
-          ./push rdiff-backup
-          ./push geth
-
+      - name: Test
+        run: ./test ${{ matrix.app }}
+      - name: Push
+        run: ./push ${{ matrix.app }}

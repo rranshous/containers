@@ -1,0 +1,4 @@
+ENV GO_VERSION 11.8
+ARG ETHVERSION=1.9
+
+FROM askmike/ethereum-raspbian

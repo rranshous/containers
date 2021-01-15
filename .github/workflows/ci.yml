@@ -25,16 +25,10 @@ jobs:
       - name: Build images
         run: |
           ./build rsyncd
-          ./build beanstalkd
           ./build ffmpeg
-          ./build handbrake
           ./build http_listing
-          ./build mosquitto
-          ./build openvpn
           ./build rdiff-backup
-          ./build transmission
-          ./build turbolift
-          ./build zfs
+          ./build geth
           
   test:
     # execute job after build job
@@ -47,16 +41,10 @@ jobs:
       - name: Test images
         run: |
           ./test rsyncd
-          ./test beanstalkd
           ./test ffmpeg
-          ./test handbrake
           ./test http_listing
-          ./test mosquitto
-          ./test openvpn
           ./test rdiff-backup
-          ./test transmission
-          ./test turbolift
-          ./push zfs
+          ./test geth
           
   push:
     # execute job after test job
@@ -80,14 +68,8 @@ jobs:
       - name: Build images
         run: |
           ./push rsyncd
-          ./push beanstalkd
           ./push ffmpeg
-          ./push handbrake
           ./push http_listing
-          ./push mosquitto
-          ./push openvpn
           ./push rdiff-backup
-          ./push transmission
-          ./push turbolift
-          ./push zfs
+          ./push geth
 

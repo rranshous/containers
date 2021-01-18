@@ -1,4 +1,16 @@
-ENV GO_VERSION 11.8
-ARG ETHVERSION=1.9
+# from https://github.com/askmike/ethereum-raspbian-docker/blob/master/Dockerfile
 
-FROM askmike/ethereum-raspbian
+FROM rranshous/golang-rpi:1.15.6
+
+RUN apt-get update && apt-get install -y git make libglib2.0-dev
+
+ARG ETHVERSION=1.8
+
+RUN cd /tmp
+RUN git clone https://github.com/ethereum/go-ethereum.git --single-branch -b release/$ETHVERSION --depth 1
+RUN cd go-ethereum ; make geth
+RUN cp /app/go-ethereum/build/bin/geth /usr/local/sbin/
+RUN rm -rf /tmp/go-ethereum
+
+CMD []
+ENTRYPOINT ["/usr/local/sbin/geth"]

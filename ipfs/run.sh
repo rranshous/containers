@@ -4,8 +4,8 @@ docker run \
   --restart=always \
   --name=ipfs-node \
   -d \
-  -v /gut/data/ipfs/ipfs_staging:/export \
-  -v /gut/data/ipfs/ipfs_data:/data/ipfs \
+  -v /data/ipfs/ipfs_staging:/export \
+  -v /data/ipfs/ipfs_data:/data/ipfs \
   -p 4001:4001 \
   -p 127.0.0.1:8080:8080 \
   -p 127.0.0.1:5001:5001 \

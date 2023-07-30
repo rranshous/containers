@@ -16,7 +16,7 @@ jobs:
     environment: default
     strategy:
       matrix:
-        app: [rsyncd, ffmpeg, http_listing, rdiff-backup, geth, gpsd, mosquitto, transmission]
+        app: [rsyncd, ffmpeg, http_listing, rdiff-backup, geth, gpsd, mosquitto, transmission, minidlna]
     steps:
       - uses: actions/checkout@v2
       - name: Build

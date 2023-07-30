@@ -1,2 +1,2 @@
-docker run --restart=always --net=host --privileged -v /data/downloads:/data/media \
+docker run --restart=always --net=host --privileged -v /data/media:/data/media \
 	--name ums -d rranshous/ums

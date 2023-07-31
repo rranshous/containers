@@ -1,0 +1,55 @@
+auth:
+  - user: scott
+    group: scott
+    uid: 1100
+    gid: 1100
+    password: scott
+  - user: robby
+    group: robby
+    uid: 1000
+    gid: 1000
+    password: robby
+
+global:
+  - "force user = robby"
+  - "force group = robby"
+
+share:
+  - name: scott_stuff
+    comment: scotts stuff
+    path: /samba/scott/stuff
+    browsable: yes
+    readonly: no
+    guestok: no
+    veto: no
+    recycle: no
+    validusers: scott
+    whitelist: scott
+  - name: robby_stuff
+    comment: robbys stuff
+    path: /samba/robby/stuff
+    browsable: yes
+    readonly: no
+    guestok: no
+    veto: no
+    recycle: no
+    validusers: robby
+    whitelist: robby
+  - name: public
+    comment: free-for-all
+    path: /samba/public
+    browsable: yes
+    readonly: yes
+    guestok: yes
+    veto: no
+    recycle: yes
+  - name: public_writable
+    comment: free-for-all-private
+    path: /samba/public
+    browsable: yes
+    readonly: no
+    guestok: no
+    veto: no
+    recycle: yes
+    validusers: robby,scott
+    whitelist: robby,scott
